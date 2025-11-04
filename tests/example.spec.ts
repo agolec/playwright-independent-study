@@ -30,7 +30,7 @@ test('FOOTER - download webInspect is visible on homepage', async ({
   await expect(home.footer.downloadWebInspect).toHaveText(expectedText);
 });
 
-test.only('Footer - assert disclaimer text content', async ({ page }) => {
+test('Footer - assert disclaimer text content', async ({ page }) => {
   const home = new LandingPage(page);
   await home.goto();
 
