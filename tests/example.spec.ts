@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 
 import { LandingPage } from '../page-objects/LandingPage';
 import { normalizeWhiteSpace } from '../utils/text-utils';
-
 import { footerData } from '../test-data/footer-data';
+import { expectCount } from '../utils/assertions';
 
 test('footer is visible on the home page', async ({ page }) => {
   const home = new LandingPage(page);
@@ -42,4 +42,17 @@ test('Footer - assert disclaimer text content', async ({ page }) => {
   footerData.disclaimer.expectedPhrases.forEach((phrase) => {
     expect(actualTextNormalized).toContain(phrase);
   });
+});
+
+test.only('type a search term', async ({ page }) => {
+  const home = new LandingPage(page);
+  await home.goto();
+
+  const isVisible = await home.search.isVisible();
+  const text = 'account';
+  console.log(text);
+  await home.typeSearchTerm(text);
+  await home.pressEnterForSearch();
+  await expectCount(home.searchResults, 2);
+  expect(isVisible).toBeTruthy();
 });
