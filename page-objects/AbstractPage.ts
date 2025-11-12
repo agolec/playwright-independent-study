@@ -12,4 +12,10 @@ export class AbstractPage {
   async wait(time: number) {
     await this.page.waitForTimeout(time);
   }
+  async click(selector: string) {
+    await this.page.click(selector);
+  }
+  async typeText(selector: string, text: string) {
+    await this.page.fill(selector, text);
+  }
 }
