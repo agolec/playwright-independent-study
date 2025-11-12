@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { type Locator, type Page } from '@playwright/test';
 import { Footer } from '../page-objects/components/Footer';
 
 export class AbstractPage {
@@ -15,7 +15,7 @@ export class AbstractPage {
   async click(selector: string) {
     await this.page.click(selector);
   }
-  async typeText(selector: string, text: string) {
-    await this.page.fill(selector, text);
+  async typeText(selector: Locator, text: string) {
+    await selector.fill(text);
   }
 }
